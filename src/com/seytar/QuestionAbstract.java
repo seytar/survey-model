@@ -38,6 +38,7 @@ abstract public class QuestionAbstract<T extends AnswerAbstract> implements Iden
     }
 
     public void addAnswer(T answer) {
+        answer.setQuestion(this);
         answers.add(answer);
     }
 
