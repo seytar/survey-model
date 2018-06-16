@@ -1,4 +1,4 @@
-package com.sivaz;
+package com.seytar;
 
 import java.util.ArrayList;
 

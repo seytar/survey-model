@@ -1,4 +1,4 @@
-package com.sivaz;
+package com.seytar;
 
 public interface IdentitableInterface {
     void setIdentity(Identity identity);

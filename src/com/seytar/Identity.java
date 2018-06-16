@@ -1,4 +1,4 @@
-package com.sivaz;
+package com.seytar;
 
 public class Identity<T> {
     protected T key;

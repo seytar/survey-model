@@ -1,4 +1,4 @@
-package com.sivaz;
+package com.seytar;
 
 public class QuestionAbstract implements IdentitableInterface {
     private Identity identity;
