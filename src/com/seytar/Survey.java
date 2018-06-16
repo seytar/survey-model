@@ -2,19 +2,19 @@ package com.seytar;
 
 import java.util.ArrayList;
 
-public class Survey implements IdentitableInterface {
+public class Survey<T extends QuestionAbstract> implements IdentitableInterface {
     private Identity identity;
     private String title;
-    private ArrayList<QuestionAbstract> questions = new ArrayList();
+    private ArrayList<T> questions = new ArrayList();
 
     public Survey(Identity identity, String title) {
         setIdentity(identity);
         setTitle(title);
     }
 
-    public Survey(Identity identity, String title, ArrayList<QuestionAbstract> questions) {
+    public Survey(Identity identity, String title, ArrayList<T> questions) {
         this(identity, title);
-        for (QuestionAbstract question: questions) {
+        for (T question: questions) {
             addQuestion(question);
         }
     }
@@ -37,11 +37,11 @@ public class Survey implements IdentitableInterface {
         return title;
     }
 
-    public void addQuestion(QuestionAbstract question) {
+    public void addQuestion(T question) {
         questions.add(question);
     }
 
-    public ArrayList<QuestionAbstract> getQuestions() {
+    public ArrayList<T> getQuestions() {
         return questions;
     }
 }
