@@ -27,6 +27,8 @@ abstract public class AnswerAbstract<T extends QuestionAbstract> implements Iden
         return identity;
     }
 
+    abstract public String getKey();
+
     public void setTitle(String title) {
         this.title = title;
     }
