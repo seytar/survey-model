@@ -33,6 +33,7 @@ abstract public class QuestionAbstract<T extends AnswerAbstract> implements Iden
 
     abstract public String getKey();
     abstract public ArrayList<String> getAvailableAnswerTypes();
+    abstract public String getChoiceType();
 
     public String getTitle() {
         return title;
@@ -49,5 +50,12 @@ abstract public class QuestionAbstract<T extends AnswerAbstract> implements Iden
 
     public ArrayList<T> getAnswers() {
         return answers;
+    }
+
+    public final class ChoiceType {
+        public static final String CHOICE_TYPE_SINGLE = "single";
+        public static final String CHOICE_TYPE_MULTIPLE = "multiple";
+        public static final String CHOICE_TYPE_NONE = "none";
+        public static final String CHOICE_TYPE_UNDEFINED = "undefined";
     }
 }
