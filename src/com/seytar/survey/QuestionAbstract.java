@@ -32,7 +32,7 @@ abstract public class QuestionAbstract<T extends AnswerAbstract> implements Iden
     }
 
     abstract public String getKey();
-    abstract public ArrayList<String> getAvailableAnswerTypes();
+    abstract public ArrayList<Class> getAvailableAnswerTypes();
     abstract public String getChoiceType();
 
     public String getTitle() {
