@@ -1,5 +1,7 @@
 package com.seytar.survey;
 
+import com.seytar.survey.Question.QuestionAbstract;
+
 import java.util.ArrayList;
 
 public class Survey<T extends QuestionAbstract> implements IdentitableInterface {

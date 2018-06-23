@@ -1,6 +1,8 @@
 package com.seytar.survey;
 
-import java.lang.reflect.Constructor;
+import com.seytar.survey.Answer.AnswerAbstract;
+import com.seytar.survey.Question.QuestionMultipleChoice;
+
 import java.lang.reflect.InvocationTargetException;
 
 public class Main {

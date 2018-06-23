@@ -1,4 +1,8 @@
-package com.seytar.survey;
+package com.seytar.survey.Question;
+
+import com.seytar.survey.Answer.AnswerAbstract;
+import com.seytar.survey.IdentitableInterface;
+import com.seytar.survey.Identity;
 
 import java.util.ArrayList;
 

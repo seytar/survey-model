@@ -1,23 +1,24 @@
-package com.seytar.survey;
+package com.seytar.survey.Question;
+
+import com.seytar.survey.Answer.AnswerOpenEnded;
 
 import java.util.ArrayList;
 
-public class QuestionYesNo extends QuestionAbstract {
+public class QuestionOpenEnded extends QuestionAbstract {
     @Override
     public String getKey() {
-        return "yes-no";
+        return "open-ended";
     }
 
     @Override
     public ArrayList<Class> getAvailableAnswerTypes() {
         ArrayList<Class> availableAnswerTypes = new ArrayList<Class>();
-        availableAnswerTypes.add(AnswerChoice.class);
-        availableAnswerTypes.add(AnswerReason.class);
+        availableAnswerTypes.add(AnswerOpenEnded.class);
         return availableAnswerTypes;
     }
 
     @Override
     public String getChoiceType() {
-        return ChoiceType.CHOICE_TYPE_SINGLE;
+        return ChoiceType.CHOICE_TYPE_NONE;
     }
 }

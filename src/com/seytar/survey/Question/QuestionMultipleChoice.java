@@ -1,4 +1,8 @@
-package com.seytar.survey;
+package com.seytar.survey.Question;
+
+import com.seytar.survey.Answer.AnswerChoice;
+import com.seytar.survey.Answer.AnswerChoiceReason;
+import com.seytar.survey.Answer.AnswerReason;
 
 import java.util.ArrayList;
 

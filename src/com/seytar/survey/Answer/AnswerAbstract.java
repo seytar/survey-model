@@ -1,4 +1,8 @@
-package com.seytar.survey;
+package com.seytar.survey.Answer;
+
+import com.seytar.survey.IdentitableInterface;
+import com.seytar.survey.Identity;
+import com.seytar.survey.Question.QuestionAbstract;
 
 abstract public class AnswerAbstract<T extends QuestionAbstract> implements IdentitableInterface {
     private Identity identity;

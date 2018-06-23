@@ -1,11 +1,13 @@
-package com.seytar.survey;
+package com.seytar.survey.Question;
+
+import com.seytar.survey.Answer.AnswerOpenEnded;
 
 import java.util.ArrayList;
 
-public class QuestionOpenEnded extends QuestionAbstract {
+public class QuestionBlank extends QuestionAbstract {
     @Override
     public String getKey() {
-        return "open-ended";
+        return "blank";
     }
 
     @Override

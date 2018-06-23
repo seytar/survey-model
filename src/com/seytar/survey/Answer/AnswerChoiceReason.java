@@ -1,4 +1,4 @@
-package com.seytar.survey;
+package com.seytar.survey.Answer;
 
 public class AnswerChoiceReason extends AnswerAbstract {
     @Override
