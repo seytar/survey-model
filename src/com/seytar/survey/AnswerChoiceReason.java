@@ -1,4 +1,4 @@
-package com.seytar;
+package com.seytar.survey;
 
 public class AnswerChoiceReason extends AnswerAbstract {
     public AnswerChoiceReason(Identity identity, String title, QuestionAbstract question) {

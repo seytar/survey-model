@@ -1,4 +1,4 @@
-package com.seytar;
+package com.seytar.survey;
 
 public class Identity<T> {
     protected T key;

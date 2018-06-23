@@ -1,4 +1,4 @@
-package com.seytar;
+package com.seytar.survey;
 
 import java.util.ArrayList;
 

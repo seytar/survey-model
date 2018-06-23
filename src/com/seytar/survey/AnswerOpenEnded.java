@@ -1,4 +1,4 @@
-package com.seytar;
+package com.seytar.survey;
 
 public class AnswerOpenEnded extends AnswerAbstract {
     public AnswerOpenEnded(Identity identity, String title, QuestionAbstract question) {

@@ -1,4 +1,4 @@
-package com.seytar;
+package com.seytar.survey;
 
 public interface IdentitableInterface {
     void setIdentity(Identity identity);

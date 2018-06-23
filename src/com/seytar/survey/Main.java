@@ -1,4 +1,4 @@
-package com.seytar;
+package com.seytar.survey;
 
 public class Main {
 
