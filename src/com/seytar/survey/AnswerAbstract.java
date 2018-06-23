@@ -6,6 +6,8 @@ abstract public class AnswerAbstract<T extends QuestionAbstract> implements Iden
     private T question;
     private Double point;
 
+    public AnswerAbstract() {}
+
     public AnswerAbstract(Identity identity, String title, T question) {
         this.setIdentity(identity);
         this.setTitle(title);

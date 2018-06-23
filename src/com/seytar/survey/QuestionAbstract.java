@@ -7,6 +7,8 @@ abstract public class QuestionAbstract<T extends AnswerAbstract> implements Iden
     private String title;
     private ArrayList<T> answers = new ArrayList();
 
+    public QuestionAbstract() {}
+
     public QuestionAbstract(Identity identity, String title) {
         this.setIdentity(identity);
         this.setTitle(title);
@@ -28,6 +30,9 @@ abstract public class QuestionAbstract<T extends AnswerAbstract> implements Iden
     public Identity getIdentity() {
         return identity;
     }
+
+    abstract public String getKey();
+    abstract public ArrayList<String> getAvailableAnswerTypes();
 
     public String getTitle() {
         return title;
