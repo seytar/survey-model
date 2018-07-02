@@ -1,15 +1,19 @@
 package com.seytar.survey.Question;
 
 import com.seytar.survey.Answer.AnswerAbstract;
+import com.seytar.survey.Answer.AnswerChoice;
+import com.seytar.survey.Answer.AnswerReason;
 import com.seytar.survey.IdentitableInterface;
 import com.seytar.survey.Identity;
 
 import java.util.ArrayList;
 
-abstract public class QuestionAbstract<T extends AnswerAbstract> implements IdentitableInterface {
+abstract public class QuestionAbstract<T extends AnswerAbstract, TQ extends QuestionAbstract> implements IdentitableInterface {
     private Identity identity;
     private String title;
-    private ArrayList<T> answers = new ArrayList();
+    private ArrayList<T> answers = new ArrayList<T>();
+    private ArrayList<TQ> subQuestions = new ArrayList<TQ>();
+    private TQ parentQuestion;
 
     public QuestionAbstract() {}
 
@@ -61,5 +65,30 @@ abstract public class QuestionAbstract<T extends AnswerAbstract> implements Iden
         public static final String CHOICE_TYPE_MULTIPLE = "multiple";
         public static final String CHOICE_TYPE_NONE = "none";
         public static final String CHOICE_TYPE_UNDEFINED = "undefined";
+    }
+
+    public Boolean isParentable() {
+        return false;
+    }
+
+    public TQ getParentQuestion() {
+        return parentQuestion;
+    }
+
+    public void setParentQuestion(TQ parentQuestion) {
+        this.parentQuestion = parentQuestion;
+    }
+
+    public void addSubQuestion(TQ question) throws CloneNotSupportedException {
+        question.setParentQuestion(question);
+        for (T answer: getAnswers()) {
+            question.addAnswer((T) answer.clone());
+        }
+        subQuestions.add(question);
+    }
+
+    public ArrayList<Class> getAvailableSubQuestionTypes() {
+        ArrayList<Class> availableSubQuestionTypes = new ArrayList<Class>();
+        return availableSubQuestionTypes;
     }
 }

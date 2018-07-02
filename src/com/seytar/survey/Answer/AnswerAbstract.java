@@ -4,7 +4,7 @@ import com.seytar.survey.IdentitableInterface;
 import com.seytar.survey.Identity;
 import com.seytar.survey.Question.QuestionAbstract;
 
-abstract public class AnswerAbstract<T extends QuestionAbstract> implements IdentitableInterface {
+abstract public class AnswerAbstract<T extends QuestionAbstract> implements IdentitableInterface, Cloneable {
     private Identity identity;
     private String title;
     private T question;
@@ -57,5 +57,9 @@ abstract public class AnswerAbstract<T extends QuestionAbstract> implements Iden
 
     public void setQuestion(T question) {
         this.question = question;
+    }
+
+    public AnswerAbstract clone() throws CloneNotSupportedException {
+        return (AnswerAbstract) super.clone();
     }
 }
