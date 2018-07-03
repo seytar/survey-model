@@ -2,6 +2,6 @@
 Package providing model classes for Survey systems.
 
 ## Todo list
-* Improve matrix question type
+* ~~Improve matrix question type~~
 * Write unit tests
 * Improve docs
