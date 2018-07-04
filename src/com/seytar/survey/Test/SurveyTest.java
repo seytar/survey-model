@@ -1,7 +1,9 @@
-package com.seytar.survey;
+package com.seytar.survey.Test;
 
+import com.seytar.survey.Identity;
 import com.seytar.survey.Question.QuestionAbstract;
 import com.seytar.survey.Question.QuestionMultipleChoice;
+import com.seytar.survey.Survey;
 
 import static org.junit.jupiter.api.Assertions.*;
 
