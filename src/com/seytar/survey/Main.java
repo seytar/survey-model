@@ -17,7 +17,7 @@ public class Main {
         System.out.println(survey2.getIdentity().getKey());
 
         Identity questionMultipleIdentity = new Identity("Some multiple question identity");
-        Class c = new QuestionMultipleChoice().getAvailableAnswerTypes().get(0);
+        Class c = (Class) new QuestionMultipleChoice().getAvailableAnswerTypes().get(0);
         AnswerAbstract ac = (AnswerAbstract) c.getDeclaredConstructor().newInstance();
         ac.setIdentity(questionMultipleIdentity);
         System.out.println(ac.getIdentity().getKey());
