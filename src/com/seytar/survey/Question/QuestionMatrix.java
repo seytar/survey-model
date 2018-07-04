@@ -1,13 +1,24 @@
 package com.seytar.survey.Question;
 
-import com.seytar.survey.Answer.AnswerChoice;
-import com.seytar.survey.Answer.AnswerChoiceReason;
-import com.seytar.survey.Answer.AnswerOpenEnded;
-import com.seytar.survey.Answer.AnswerReason;
+import com.seytar.survey.Answer.*;
+import com.seytar.survey.Identity;
 
 import java.util.ArrayList;
 
-public class QuestionMatrix extends QuestionAbstract {
+public class QuestionMatrix<T extends AnswerAbstract> extends QuestionAbstract {
+
+    public QuestionMatrix() {
+        super();
+    }
+
+    public QuestionMatrix(Identity identity, String title) {
+        super(identity, title);
+    }
+
+    public QuestionMatrix(Identity identity, String title, ArrayList<T> answers) {
+        super(identity, title, answers);
+    }
+
     @Override
     public String getKey() {
         return "matrix";

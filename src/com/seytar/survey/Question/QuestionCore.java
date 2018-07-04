@@ -1,11 +1,26 @@
 package com.seytar.survey.Question;
 
+import com.seytar.survey.Answer.AnswerAbstract;
 import com.seytar.survey.Answer.AnswerChoice;
 import com.seytar.survey.Answer.AnswerOpenEnded;
+import com.seytar.survey.Identity;
 
 import java.util.ArrayList;
 
-public class QuestionCore extends QuestionAbstract {
+public class QuestionCore<T extends AnswerAbstract> extends QuestionAbstract {
+
+    public QuestionCore() {
+        super();
+    }
+
+    public QuestionCore(Identity identity, String title) {
+        super(identity, title);
+    }
+
+    public QuestionCore(Identity identity, String title, ArrayList<T> answers) {
+        super(identity, title, answers);
+    }
+
     @Override
     public String getKey() {
         return "core";

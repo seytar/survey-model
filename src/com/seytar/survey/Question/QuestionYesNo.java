@@ -1,11 +1,26 @@
 package com.seytar.survey.Question;
 
+import com.seytar.survey.Answer.AnswerAbstract;
 import com.seytar.survey.Answer.AnswerChoice;
 import com.seytar.survey.Answer.AnswerReason;
+import com.seytar.survey.Identity;
 
 import java.util.ArrayList;
 
-public class QuestionYesNo extends QuestionAbstract {
+public class QuestionYesNo<T extends AnswerAbstract> extends QuestionAbstract {
+
+    public QuestionYesNo() {
+        super();
+    }
+
+    public QuestionYesNo(Identity identity, String title) {
+        super(identity, title);
+    }
+
+    public QuestionYesNo(Identity identity, String title, ArrayList<T> answers) {
+        super(identity, title, answers);
+    }
+
     @Override
     public String getKey() {
         return "yes-no";

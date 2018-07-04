@@ -1,10 +1,25 @@
 package com.seytar.survey.Question;
 
+import com.seytar.survey.Answer.AnswerAbstract;
 import com.seytar.survey.Answer.AnswerOpenEnded;
+import com.seytar.survey.Identity;
 
 import java.util.ArrayList;
 
-public class QuestionOpenEnded extends QuestionAbstract {
+public class QuestionOpenEnded<T extends AnswerAbstract> extends QuestionAbstract {
+
+    public QuestionOpenEnded() {
+        super();
+    }
+
+    public QuestionOpenEnded(Identity identity, String title) {
+        super(identity, title);
+    }
+
+    public QuestionOpenEnded(Identity identity, String title, ArrayList<T> answers) {
+        super(identity, title, answers);
+    }
+
     @Override
     public String getKey() {
         return "open-ended";
