@@ -42,7 +42,8 @@ public class SurveyTest {
 
     private static final String[] questionKeys = {"QMC", "QYN", "QB", "QC", "QM", "QOE"};
 
-    private void makeSurveys() {
+    @org.junit.jupiter.api.BeforeEach
+    public void makeSurveys() {
         Identity surveyIdString = new Identity(SURVEY_IDENTITY_STRING);
         survey1 = new Survey(surveyIdString, SURVEY_TITLE1);
 
@@ -50,7 +51,8 @@ public class SurveyTest {
         survey2 = new Survey(surveyIdInteger, SURVEY_TITLE2);
     }
 
-    private void makeQuestions() throws NoSuchFieldException, IllegalAccessException, NoSuchMethodException, InvocationTargetException, InstantiationException {
+    @org.junit.jupiter.api.BeforeEach
+    public void makeQuestions() throws NoSuchFieldException, IllegalAccessException, NoSuchMethodException, InvocationTargetException, InstantiationException {
         for (String qKey: questionKeys) {
             Class qClass = (Class) getClass().getDeclaredField("CLASS_" + qKey).get(this);
             String qTitle = (String) getClass().getDeclaredField("TITLE_" + qKey).get(this);
@@ -65,16 +67,12 @@ public class SurveyTest {
 
     @org.junit.jupiter.api.Test
     public void testingIdentityKeyStringAndInteger() {
-        makeSurveys();
-
         assertEquals(survey1.getIdentity().getKey(), SURVEY_IDENTITY_STRING);
         assertEquals(survey2.getIdentity().getKey(), SURVEY_IDENTITY_INTEGER);
     }
 
     @org.junit.jupiter.api.Test
     public void testingSetGetIdentity() {
-        makeSurveys();
-
         Identity newSurveyId = new Identity(SURVEY_IDENTITY_INTEGER);
         survey1.setIdentity(newSurveyId);
         assertEquals(survey1.getIdentity().getKey(), SURVEY_IDENTITY_INTEGER);
@@ -82,18 +80,13 @@ public class SurveyTest {
 
     @org.junit.jupiter.api.Test
     public void testingSetGetTitle() {
-        makeSurveys();
-
         String newTitleString = "New Survey Title";
         survey1.setTitle(newTitleString);
         assertEquals(survey1.getTitle(), newTitleString);
     }
 
     @org.junit.jupiter.api.Test
-    public void testingAddGetQuestion() throws IllegalAccessException, NoSuchFieldException, NoSuchMethodException, InvocationTargetException, InstantiationException {
-        makeSurveys();
-        makeQuestions();
-
+    public void testingAddGetQuestion() throws IllegalAccessException, NoSuchFieldException {
         for (String qKey: questionKeys) {
             QuestionAbstract question = (QuestionAbstract) getClass().getDeclaredField("QUESTION_" + qKey).get(this);
             survey1.addQuestion(question);
