@@ -1,9 +1,11 @@
 package com.seytar.survey;
 
 import com.seytar.survey.Answer.AnswerAbstract;
+import com.seytar.survey.Question.QuestionAbstract;
 import com.seytar.survey.Question.QuestionMultipleChoice;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 
 public class Main {
 
@@ -17,9 +19,17 @@ public class Main {
         System.out.println(survey2.getIdentity().getKey());
 
         Identity questionMultipleIdentity = new Identity("Some multiple question identity");
-        Class c = (Class) new QuestionMultipleChoice().getAvailableAnswerTypes().get(0);
+        QuestionMultipleChoice qm = new QuestionMultipleChoice(questionMultipleIdentity, "Abece");
+        Class c = (Class) qm.getAvailableAnswerTypes().get(0);
         AnswerAbstract ac = (AnswerAbstract) c.getDeclaredConstructor().newInstance();
-        ac.setIdentity(questionMultipleIdentity);
+        Identity questionMultipleAnswerIdentity = new Identity("Some multiple question answer identity");
+        ac.setIdentity(questionMultipleAnswerIdentity);
         System.out.println(ac.getIdentity().getKey());
+
+        survey2.addQuestion(qm);
+
+        for (QuestionAbstract question: (ArrayList<QuestionAbstract>) survey2.getQuestions()) {
+            System.out.println(question.getTitle());
+        }
     }
 }
