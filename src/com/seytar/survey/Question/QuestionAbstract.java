@@ -1,11 +1,10 @@
 package com.seytar.survey.Question;
 
 import com.seytar.survey.Answer.AnswerAbstract;
-import com.seytar.survey.Answer.AnswerChoice;
-import com.seytar.survey.Answer.AnswerReason;
 import com.seytar.survey.IdentitableInterface;
 import com.seytar.survey.Identity;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
 abstract public class QuestionAbstract<T extends AnswerAbstract, TQ extends QuestionAbstract> implements IdentitableInterface, Cloneable {
@@ -14,6 +13,7 @@ abstract public class QuestionAbstract<T extends AnswerAbstract, TQ extends Ques
     private ArrayList<T> answers = new ArrayList<T>();
     private ArrayList<TQ> subQuestions = new ArrayList<TQ>();
     private TQ parentQuestion;
+    private Class subQuestionType;
 
     public QuestionAbstract() {}
 
@@ -67,10 +67,6 @@ abstract public class QuestionAbstract<T extends AnswerAbstract, TQ extends Ques
         public static final String CHOICE_TYPE_UNDEFINED = "undefined";
     }
 
-    public Boolean isParentable() {
-        return false;
-    }
-
     public TQ getParentQuestion() {
         return parentQuestion;
     }
@@ -79,7 +75,22 @@ abstract public class QuestionAbstract<T extends AnswerAbstract, TQ extends Ques
         this.parentQuestion = parentQuestion;
     }
 
-    public void addSubQuestion(TQ question) throws CloneNotSupportedException {
+    public Boolean isParentable() {
+        return false;
+    }
+
+    public void setSubQuestionType(Class subQuestionClass) {
+        this.subQuestionType = subQuestionClass;
+    }
+
+    public Class getSubQuestionType() {
+        return subQuestionType;
+    }
+
+    public void addSubQuestion(TQ question) throws CloneNotSupportedException, InvalidParameterException {
+        if(getSubQuestionType() == null) throw new InvalidParameterException("Parentable question must have sub question type. Use setSubQuestionType(Class subQuestionClass) method.");
+        if(question.getClass() != getSubQuestionType()) throw new InvalidParameterException("The sub question must be " + getSubQuestionType() + " class.");
+
         question.setParentQuestion(this);
         for (T answer: getAnswers()) {
             question.addAnswer((T) answer.clone());
