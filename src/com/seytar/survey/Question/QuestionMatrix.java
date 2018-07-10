@@ -50,7 +50,7 @@ public class QuestionMatrix<T extends AnswerAbstract> extends QuestionAbstract {
         availableSubQuestionTypes.add(QuestionMultipleChoice.class);
         availableSubQuestionTypes.add(QuestionBlank.class);
         availableSubQuestionTypes.add(QuestionCore.class);
-        availableSubQuestionTypes.add(QuestionBlank.class);
+        availableSubQuestionTypes.add(QuestionOpenEnded.class);
         availableSubQuestionTypes.add(QuestionYesNo.class);
         return availableSubQuestionTypes;
     }
