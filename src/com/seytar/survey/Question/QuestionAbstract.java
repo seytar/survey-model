@@ -96,6 +96,10 @@ abstract public class QuestionAbstract<T extends AnswerAbstract, TQ extends Ques
         return availableSubQuestionTypes;
     }
 
+    public boolean subQuestionIsLegal(TQ question) {
+        return getAvailableSubQuestionTypes().contains(question.getClass());
+    }
+
     public QuestionAbstract clone() throws CloneNotSupportedException {
         return (QuestionAbstract) super.clone();
     }
