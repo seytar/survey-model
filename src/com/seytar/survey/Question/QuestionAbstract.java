@@ -87,6 +87,10 @@ abstract public class QuestionAbstract<T extends AnswerAbstract, TQ extends Ques
         subQuestions.add(question);
     }
 
+    public ArrayList<TQ> getSubQuestions() {
+        return subQuestions;
+    }
+
     public ArrayList<Class> getAvailableSubQuestionTypes() {
         ArrayList<Class> availableSubQuestionTypes = new ArrayList<Class>();
         return availableSubQuestionTypes;
