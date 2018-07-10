@@ -8,7 +8,7 @@ import com.seytar.survey.Identity;
 
 import java.util.ArrayList;
 
-abstract public class QuestionAbstract<T extends AnswerAbstract, TQ extends QuestionAbstract> implements IdentitableInterface {
+abstract public class QuestionAbstract<T extends AnswerAbstract, TQ extends QuestionAbstract> implements IdentitableInterface, Cloneable {
     private Identity identity;
     private String title;
     private ArrayList<T> answers = new ArrayList<T>();
@@ -90,5 +90,9 @@ abstract public class QuestionAbstract<T extends AnswerAbstract, TQ extends Ques
     public ArrayList<Class> getAvailableSubQuestionTypes() {
         ArrayList<Class> availableSubQuestionTypes = new ArrayList<Class>();
         return availableSubQuestionTypes;
+    }
+
+    public QuestionAbstract clone() throws CloneNotSupportedException {
+        return (QuestionAbstract) super.clone();
     }
 }

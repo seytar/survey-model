@@ -6,6 +6,7 @@ import com.seytar.survey.Question.*;
 import com.seytar.survey.Survey;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -37,8 +38,11 @@ public class SurveyTest {
     private QuestionYesNo QUESTION_QYN;
     private QuestionBlank QUESTION_QB;
     private QuestionCore QUESTION_QC;
-    private QuestionMatrix QUESTION_QM;
     private QuestionOpenEnded QUESTION_QOE;
+    private QuestionMatrix QUESTION_QM;
+
+    private ArrayList<QuestionAbstract> subQuestionsForParentables = new ArrayList<QuestionAbstract>();
+    private ArrayList<QuestionAbstract> parentableQuestions = new ArrayList<QuestionAbstract>();
 
     private static final String[] questionKeys = {"QMC", "QYN", "QB", "QC", "QM", "QOE"};
 
@@ -52,7 +56,7 @@ public class SurveyTest {
     }
 
     @org.junit.jupiter.api.BeforeEach
-    public void makeQuestions() throws NoSuchFieldException, IllegalAccessException, NoSuchMethodException, InvocationTargetException, InstantiationException {
+    public void makeQuestions() throws NoSuchFieldException, IllegalAccessException, NoSuchMethodException, InvocationTargetException, InstantiationException, CloneNotSupportedException {
         for (String qKey: questionKeys) {
             Class qClass = (Class) getClass().getDeclaredField("CLASS_" + qKey).get(this);
             String qTitle = (String) getClass().getDeclaredField("TITLE_" + qKey).get(this);
@@ -61,7 +65,19 @@ public class SurveyTest {
             question.setIdentity(new Identity("ID-" + qKey));
             question.setTitle(qTitle);
 
+            if(question.isParentable()) {
+                parentableQuestions.add(question);
+            } else {
+                subQuestionsForParentables.add(question);
+            }
+
             getClass().getDeclaredField("QUESTION_" + qKey).set(this, question);
+        }
+
+        for (QuestionAbstract parentableQuestion: parentableQuestions) {
+            for (QuestionAbstract subQuestion: subQuestionsForParentables) {
+                parentableQuestion.addSubQuestion(subQuestion.clone());
+            }
         }
     }
 
