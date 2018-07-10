@@ -36,7 +36,7 @@ public class QuestionMatrix<T extends AnswerAbstract> extends QuestionAbstract {
 
     @Override
     public String getChoiceType() {
-        return ChoiceType.CHOICE_TYPE_MULTIPLE;
+        return ChoiceType.CHOICE_TYPE_UNDEFINED;
     }
 
     @Override
