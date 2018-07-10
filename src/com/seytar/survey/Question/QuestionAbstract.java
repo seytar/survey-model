@@ -80,7 +80,7 @@ abstract public class QuestionAbstract<T extends AnswerAbstract, TQ extends Ques
     }
 
     public void addSubQuestion(TQ question) throws CloneNotSupportedException {
-        question.setParentQuestion(question);
+        question.setParentQuestion(this);
         for (T answer: getAnswers()) {
             question.addAnswer((T) answer.clone());
         }
