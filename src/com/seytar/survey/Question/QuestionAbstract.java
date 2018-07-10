@@ -98,6 +98,10 @@ abstract public class QuestionAbstract<T extends AnswerAbstract, TQ extends Ques
         subQuestions.add(question);
     }
 
+    public void setSubQuestions(ArrayList<TQ> subQuestions) {
+        this.subQuestions = subQuestions;
+    }
+
     public ArrayList<TQ> getSubQuestions() {
         return subQuestions;
     }
@@ -108,7 +112,7 @@ abstract public class QuestionAbstract<T extends AnswerAbstract, TQ extends Ques
     }
 
     public boolean subQuestionIsLegal(TQ question) {
-        return getAvailableSubQuestionTypes().contains(question.getClass());
+        return getAvailableSubQuestionTypes().contains(question.getClass()) && question.getClass() == getSubQuestionType();
     }
 
     public QuestionAbstract clone() throws CloneNotSupportedException {

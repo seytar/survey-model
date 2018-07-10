@@ -57,6 +57,7 @@ public class SurveyTest {
 
     @org.junit.jupiter.api.BeforeEach
     public void makeQuestions() throws NoSuchFieldException, IllegalAccessException, NoSuchMethodException, InvocationTargetException, InstantiationException, CloneNotSupportedException {
+        ArrayList<QuestionAbstract> tmpParentableQuestions = new ArrayList<QuestionAbstract>();
         for (String qKey: questionKeys) {
             Class qClass = (Class) getClass().getDeclaredField("CLASS_" + qKey).get(this);
             String qTitle = (String) getClass().getDeclaredField("TITLE_" + qKey).get(this);
@@ -66,7 +67,7 @@ public class SurveyTest {
             question.setTitle(qTitle);
 
             if(question.isParentable()) {
-                parentableQuestions.add(question);
+                tmpParentableQuestions.add(question);
             } else {
                 subQuestionsForParentables.add(question);
             }
@@ -74,9 +75,27 @@ public class SurveyTest {
             getClass().getDeclaredField("QUESTION_" + qKey).set(this, question);
         }
 
-        for (QuestionAbstract parentableQuestion: parentableQuestions) {
-            for (QuestionAbstract subQuestion: subQuestionsForParentables) {
-                parentableQuestion.addSubQuestion(subQuestion.clone());
+        for (int i = 0; i < tmpParentableQuestions.size(); i ++) {
+            for (String qKey: questionKeys) {
+                QuestionAbstract parentableQuestion = tmpParentableQuestions.get(i).clone();
+
+                Class qClass = (Class) getClass().getDeclaredField("CLASS_" + qKey).get(this);
+                QuestionAbstract question = (QuestionAbstract) qClass.getDeclaredConstructor().newInstance();
+
+                if(!question.isParentable()) {
+                    parentableQuestion.setSubQuestionType(qClass);
+
+                    ArrayList<QuestionAbstract> subQuestions = new ArrayList<QuestionAbstract>();
+                    for (QuestionAbstract subQuestion : subQuestionsForParentables) {
+                        if (parentableQuestion.subQuestionIsLegal(subQuestion)) {
+                            subQuestions.add(subQuestion.clone());
+                        }
+                    }
+
+                    parentableQuestion.setSubQuestions(subQuestions);
+
+                    parentableQuestions.add(parentableQuestion);
+                }
             }
         }
     }
@@ -109,6 +128,15 @@ public class SurveyTest {
             Integer questionIndex = survey1.getQuestions().indexOf(question);
             QuestionAbstract q = (QuestionAbstract) survey1.getQuestions().get(questionIndex);
             assertEquals(question, q);
+        }
+    }
+
+    @org.junit.jupiter.api.Test
+    public void testingParentableQuestions() {
+        for (QuestionAbstract question: parentableQuestions) {
+            for (QuestionAbstract subQuestion: (ArrayList<QuestionAbstract>) question.getSubQuestions()) {
+                assertEquals(question.getSubQuestionType(), subQuestion.getClass());
+            }
         }
     }
 }
